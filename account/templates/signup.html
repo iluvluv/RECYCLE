@@ -2,6 +2,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
         {% block head %}
 
@@ -11,46 +12,33 @@
         {% endblock %}
 
 </head>
+
 <body>
         {% block tester %}
 
         <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{% url 'signup' %}">
                 {% csrf_token %}
 
-                                        Username
-                                        <input class="input100" type="text" name="username" >      
-                                        email
-                                                <input class="input100" type="text" name="email" >  
-                                        
-                                                {{ email_overlap }}
-                                        Password
-        
-                                        <input class="input100" type="password" name="password" >
-                                                Password_check
-                                                <input class="input100" type="password" name="pwcheck" >
+                <p>Username <input class="input100" type="text" name="username"></p>
+                <p>email <input class="input100" type="text" name="email"></p>
+                {{ email_overlap }}
+                <p>Password <input class="input100" type="password" name="password"></p>
+                <p>Password_check <input class="input100" type="password" name="pwcheck"></p>
+                <p>nickname <input class="input100" type="text" name="nickname"></p>
+                <p>phone <input class="input100" type="text" name="phone"></p>
+                <button class="login100-form-btn">Signup</button>
 
-                                                nickname
-                                                        <input class="input100" type="text" name="nickname" > 
-
-                                                        phone
-                                                        <input class="input100" type="text" name="phone" > 
-
-                                              
-                                                <button class="login100-form-btn">
-                                                        Signup
-                                                </button>
-
-                        </form>
+        </form>
 
 
-                        {% endblock %}
+        {% endblock %}
 
-                        {% block recycle %}
-                        {% endblock %}
+        {% block recycle %}
+        {% endblock %}
 
 
-                        {% block script %}
-{% endblock %} 
+        {% block script %}
+        {% endblock %}
 </body>
+
 </html>
- 
