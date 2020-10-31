@@ -3,7 +3,8 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=django,macos,windows,visualstudiocode
 
 venv/
-
+.venv/
+.idea
 ### Django ###
 *.log
 *.pot
