@@ -2,6 +2,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	{% block head %}
 
@@ -11,31 +12,25 @@
 	{% endblock %}
 
 </head>
+
 <body>
 	{% block tester %}
-
 	<form class="login100-form validate-form flex-sb flex-w" method="POST" action="{% url 'login' %}">
 		{% csrf_token %}
 
-		Username
-		<input class="input100" type="text" name="username" >  
-		Password
-		<input class="input100" type="password" name="password" >
+		<p>Username <input class="input100" type="text" name="username"></p>
 
-			<a href="{% url 'signup' %}" class="txt3">
-				회원가입
-			</a>
+		<p>Password <input class="input100" type="password" name="password"></p>
 
-		<button class="login100-form-btn">
-			Login
-		</button>
-</form>
-{% endblock %}
+		<button class="login100-form-btn">Login</button>
+	</form>
+	{% endblock %}
 
-{% block recycle %}
-{% endblock %}
+	{% block recycle %}
+	{% endblock %}
 
-{% block script %}
-{% endblock %} 
+	{% block script %}
+	{% endblock %}
 </body>
+
 </html>

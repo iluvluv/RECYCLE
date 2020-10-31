@@ -6,13 +6,14 @@ from .models import *
 
 # 메인 전체리스트
 def index(request):
-    return render(request, "index.html")
+    object_all = Goods.objects.all
+    return render(request, "index.html", {"object_all":object_all})
 
 
 # 종류별 리스트
-def kinds_list(request, kinds):
-    kinds_list = Goods.objects.filter(kinds=kinds)
-    return render(request, "kinds_list.html", {"kinds_list":kinds_list})
+def kinds_list(request, kinds_name):
+    kinds_list = Goods.objects.filter(kinds=kinds_name)
+    return render(request, "kinds_list.html", {"kinds_list":kinds_list, "kinds_name":kinds_name})
 
 #상세보기
 def detail(request, goods_id):

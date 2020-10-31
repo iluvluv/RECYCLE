@@ -1,0 +1,16 @@
+.account_div {
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: row-reverse;
+    width: 100%;
+}
+
+.account_box {
+    display: flex;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.account {
+    width: 70px;
+}
