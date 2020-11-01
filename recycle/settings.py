@@ -26,7 +26,7 @@ SECRET_KEY = 'f9bdg^e#9#83^f)saqfs_vy+1p+5ll=tougw!0m+dl!x^$+wv%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'account',
     'goods',
     'purchase',
+    'corsheaders'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,8 +53,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'recycle.urls'
 
 TEMPLATES = [

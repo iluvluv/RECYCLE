@@ -4,6 +4,9 @@ from purchase.models import *
 from .models import *
 # Create your views here.
 
+class Data:
+    value = ""
+
 # 메인 전체리스트
 def index(request):
     object_all = Goods.objects.all
@@ -20,3 +23,16 @@ def detail(request, id):
     goods = get_object_or_404(Goods, pk=id)
     return render(request, "detail.html", {"goods":goods})
 
+@csrf_exempt
+def show(request):
+    dt = {"value": Data.value}
+    return HttpResponse(content=json.dumps(dt))
+
+
+@csrf_exempt
+def update(request):
+    data = request.POST['data']
+    if len(data) != 0:
+        Data.value = request.POST['data']
+        print(Data.value)
+    return HttpResponse()
