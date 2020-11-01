@@ -21,7 +21,7 @@ def login(request):
             auth.login(request, user)
             return redirect('index')
         else:
-            return HttpResponse('로그인 실패. 다시 시도 해보세요.')
+            return render(request,"login.html",{"msg":"로그인 실패 다시 시도 해보세요"})
     return redirect('index')
 
 

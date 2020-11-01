@@ -50,7 +50,7 @@
                 <div class="grid__sizer"></div>
                 <!-- Grid items -->
                 {% for element in object_all %}
-                <div class="grid__item shirts">
+            <div class="grid__item shirts" onclick="location.href='{% url 'detail' element.id %}'">
                     <div class="slider">
                         <div class="slider__item"><img src="{{ element.image.url }}" alt="Dummy" /></div>
                     </div>
@@ -61,14 +61,17 @@
                     </div>
                     <button class="action action--button action--buy"></button>
                 </div>
+    
                 {% endfor %}
             </section>
             <!-- /grid-->
 		</div>
-	</div>
+    </div>
+ 
     {% endblock %}
 
     {% block script %}
+  
     {% endblock %}
     </body>
 </html>

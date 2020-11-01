@@ -16,7 +16,7 @@ def kinds_list(request, kinds_name):
     return render(request, "kinds_list.html", {"kinds_list":kinds_list, "kinds_name":kinds_name})
 
 #상세보기
-def detail(request, goods_id):
-    goods = get_object_or_404(Goods, pk=goods_id)
+def detail(request, id):
+    goods = get_object_or_404(Goods, pk=id)
     return render(request, "detail.html", {"goods":goods})
 

@@ -19,14 +19,14 @@
         <form class="login100-form validate-form flex-sb flex-w" method="POST" action="{% url 'signup' %}">
                 {% csrf_token %}
 
-                <p>Username <input class="input100" type="text" name="username"></p>
-                <p>email <input class="input100" type="text" name="email"></p>
+                <p>아이디 <input class="input100" type="text" name="username"></p>
+                <p>이메일 <input class="input100" type="text" name="email"></p>
                 {{ email_overlap }}
-                <p>Password <input class="input100" type="password" name="password"></p>
-                <p>Password_check <input class="input100" type="password" name="pwcheck"></p>
-                <p>nickname <input class="input100" type="text" name="nickname"></p>
-                <p>phone <input class="input100" type="text" name="phone"></p>
-                <button class="login100-form-btn">Signup</button>
+                <p>비밀번호 <input class="input100" type="password" name="password"></p>
+                <p>비밀번호 확인 <input class="input100" type="password" name="pwcheck"></p>
+                <p>이름 <input class="input100" type="text" name="nickname"></p>
+                <p>휴대폰번호 <input class="input100" type="text" name="phone"></p>
+                <button class="login100-form-btn">회원가입</button>
 
         </form>
 
