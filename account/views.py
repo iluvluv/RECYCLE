@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,HttpResponse
+from django.shortcuts import render,redirect,HttpResponse,get_object_or_404
 from django.contrib import auth
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
@@ -18,10 +18,9 @@ def login(request):
         password = request.POST["password"]
         user = authenticate(username = username, password = password)
         if user is not None:
-            auth.login(request, user)
-            return redirect('index')
+            return login_next(request,user)
         else:
-            return render(request,"login.html",{"msg":"로그인 실패 다시 시도 해보세요"})
+            return render(request,"login.html",{'msg':"가입실패"})
     return redirect('index')
 
 
@@ -34,12 +33,11 @@ def signup(request):
         pwcheck = request.POST["pwcheck"]
         email = request.POST["email"]
         nickname = request.POST["nickname"]
-        phone = request.POST["phone"]
         if password != pwcheck:
             return render(request, "signup.html",{"pw_msg":"비밀번호가 일치하지 않습니다"})
         if User.objects.filter(username=username).exists():
-            return render(request, "signup.html", {"email_overlap":"이미 가입된 이메일 입니다"})
-        user = User.objects.create_user(username=username, password=password, nickname=nickname, email=email, phone=phone)
+            return render(request, "signup.html", {"email_overlap":"이미 가입된 유저 입니다"})
+        user = User.objects.create_user(username=username, password=password, nickname=nickname, email=email)
         user.save()        
         return login_next(request, user)
     return redirect('index')
@@ -55,6 +53,8 @@ def login_next(request, user):
     if EmailConfirm.objects.filter(user=user, is_confirmed=True).exists():
         auth.login(request, user)
         return redirect('index')
+    elif EmailConfirm.objects.filter(user=user).exists():
+        return render(request,"login.html",{'msg':"가입실패"})
     else:
         send_confirm_mail(user)
         return redirect('email_sent')
@@ -90,7 +90,7 @@ def confirm_email(request):
         email_confirm = get_object_or_404(EmailConfirm, key=key, is_confirmed=False)
         email_confirm.is_confirmed = True
         email_confirm.save()
-        return redirect('login')
+        return redirect(reverse('index'))
     except:
         return render(request, 'login.html')
 

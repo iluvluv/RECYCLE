@@ -25,28 +25,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}" />
 	<script src="{% static 'js/modernizr.custom.js' %}"></script>
 	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script>
-		$(function() {
-			timer = setInterval( function () {
-				$.ajax({
-					url: "http://localhost:8000/show/",
-					type: "POST",
-					dataType: "json",
-					complete : function(data) {
-						console.log(data.responseJSON.value);
-						console.log(typeof(data.responseJSON.value));
-						let temp = data.responseJSON.value.replace("\r\n", "");
-						if (parseInt(temp) < 7) {
-							alert("꽉 찼습니다.")
-							// alert(data.responseJSON.value);
-						}    
-					}
-				});
 
-				//clearInterval(timer);
-			}, 1000);
-		});
-	</script>
 	{% block head %}
 	{% endblock %}
 </head>

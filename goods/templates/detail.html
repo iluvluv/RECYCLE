@@ -12,16 +12,37 @@
 </head>
 <body>
     {% block tester %}
-  
+    <div id="recycle">
+		<div class="bar">
+			<div class="filter">
+				<span class="filter__label">Filter: </span>
+				<button class="action filter__item filter__item--selected" data-filter="*" onclick="allButton();">All</button>
+				<button class="action filter__item" data-filter=".jackets" onclick="jacketsButton();"><i
+						class="icon icon--jacket"></i><span class="action__text">Jackets</span></button>
+				<button class="action filter__item" data-filter=".shirts" onclick="shirtsButton();"><i
+						class="icon icon--shirt"></i><span class="action__text">Shirts</span></button>
+				<button class="action filter__item" data-filter=".dresses" onclick="dressesButton();"><i
+						class="icon icon--dress"></i><span class="action__text">Dresses</span></button>
+				<button class="action filter__item" data-filter=".trousers" onclick="trousersButton();"><i
+						class="icon icon--trousers"></i><span class="action__text">Trousers</span></button>
+				<button class="action filter__item" data-filter=".shoes" onclick="shoesButton();"><i
+						class="icon icon--shoe"></i><span class="action__text">Shoes</span></button>
+			</div>
+			<button class="cart">
+				<i class="cart__icon fa fa-shopping-cart"></i>
+				<span class="text-hidden">Shopping cart</span>
+				<span class="cart__count">0</span>
+			</button>
+		</div>
     {% endblock %}
 
     {% block content %}
 
-        <p>{{ goods.title }}</p>
+        <h1>{{ goods.title }}</h1>
         <p>{{ goods.content }}</p>
         <img width="300px" height="300px"  src="{{ goods.image.url }}">
         <p>{{ goods.money }}</p>
-        <button class="goods_click">결제하기</button>
+        <button class="goods_click" style="background-color: #2A2B30; color: white;">결제하기</button>
 
     {% endblock %}
 
@@ -29,37 +50,6 @@
 
     <script src="http://code.jquery.com/jquery-1.12.4.min.js" ></script>
     <script src="http://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-    <script>
-        $('button').click(function()
-            {
-        var IMP = window.IMP;
-        var code = "iamport";  // FIXME: 가맹점 식별코드
-        IMP.init(code);
-
-        // 결제요청
-        IMP.request_pay({
-            // name과 amount만 있어도 결제 진행가능
-            pg : 'html5_inicis', // pg 사 선택
-            pay_method : 'card',
-            merchant_uid : 'merchant_' + new Date().getTime(),
-            name : '{{ goods.title }}',
-            amount : '{{ goods.money }}',
-            m_redirect_url : 'https://www.yourdomain.com/payments/complete'
-        }, function(rsp) {
-            if ( rsp.success ) {
-                var msg = '결제가 완료되었습니다.';
-                msg += '고유ID : ' + rsp.imp_uid;
-                msg += '상점 거래ID : ' + rsp.merchant_uid;
-                msg += '결제 금액 : ' + rsp.paid_amount;
-                msg += '카드 승인번호 : ' + rsp.apply_num;
-            }
-            else {
-                var msg = '결제에 실패하였습니다. 에러내용 : ' + rsp.error_msg
-            }
-            alert(msg);
-        });
-    })();
-    </script>
 
 {% endblock %} 
 </body>
